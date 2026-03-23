@@ -274,7 +274,8 @@
     .class-grid,
     .tile-grid,
     .gallery-grid,
-    .accomplishment-grid {
+    .accomplishment-grid,
+    .accomplishment-list {
       display: grid;
       gap: 18px;
     }
@@ -285,6 +286,7 @@
     .tile-grid,
     .gallery-grid,
     .accomplishment-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
+    .accomplishment-list { grid-template-columns: 1fr; margin-top: 22px; }
 
     .mini-card,
     .stat,
@@ -360,16 +362,56 @@
     }
 
     .gallery-card,
-    .accomplishment-card {
+    .accomplishment-card,
+    .list-accomplishment {
       overflow: hidden;
       transition: transform .22s ease;
     }
 
     .gallery-card:hover,
-    .accomplishment-card:hover { transform: translateY(-4px); }
+    .accomplishment-card:hover,
+    .list-accomplishment:hover { transform: translateY(-4px); }
 
     .gallery-body,
     .accomplishment-body { padding: 18px; }
+
+    .list-accomplishment {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      overflow: hidden;
+    }
+
+    .list-copy {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .list-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .list-media {
+      background: linear-gradient(180deg, #efe7d8, #fff);
+      border-left: 1px solid var(--line);
+      min-height: 250px;
+    }
+
+    .list-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      padding: 12px;
+    }
 
     .pill-list {
       display: flex;
@@ -439,6 +481,7 @@
       .gallery-grid,
       .accomplishment-grid,
       .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .list-accomplishment { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 760px) {
@@ -451,7 +494,9 @@
       .tile-grid,
       .gallery-grid,
       .accomplishment-grid,
-      .class-grid { grid-template-columns: 1fr; }
+      .class-grid,
+      .accomplishment-list { grid-template-columns: 1fr; }
+      .list-accomplishment { grid-template-columns: 1fr; }
       .card,
       .hero-copy { padding: 22px; }
     }
@@ -467,7 +512,6 @@
       <div class="nav-links">
         <a href="#home" data-page="home">Home</a>
         <a href="#about" data-page="about">About</a>
-        <a href="#research" data-page="research">Research</a>
         <a href="#academics" data-page="academics">Academics</a>
         <a href="#accomplishments" data-page="accomplishments">Accomplishments</a>
         <a href="#leadership" data-page="leadership">Leadership</a>
@@ -566,62 +610,6 @@
       </div>
     </section>
 
-    <section class="page" id="research" data-page="research">
-      <div class="container">
-        <div class="eyebrow">Research</div>
-        <div class="grid-2">
-          <div class="card">
-            <h2>Lighthouse Biophysics Research Fellowship</h2>
-            <p>
-              The <strong>Lighthouse Biophysics Research Fellowship</strong> is a selective program centered on <strong>biophysics, quantitative biology, microscopy, engineering design, and computational analysis</strong>. It is designed for students prepared for long-term commitment, precision, and work that extends beyond a single semester or school year.
-            </p>
-            <p>
-              That environment fits me well because my interests are already naturally interdisciplinary. I am drawn to technical systems, scientific reasoning, and research settings where patience and responsibility matter. I do not see science as only theory; I see it as something that must often be built, maintained, analyzed, and communicated.
-            </p>
-            <p>
-              My experience with <strong>3D CAD modeling, 3D printing, computational tools, and presentation</strong> gives me a strong starting point for participating meaningfully in this kind of work.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Technical preparation</h3>
-            <ul class="clean-list">
-              <li>Years of experience with 3D printing and 3D CAD</li>
-              <li>Hands-on familiarity with machine troubleshooting and maintenance</li>
-              <li>Growing computational experience, especially in JavaScript and basic Python</li>
-              <li>Strong interest in microscopy and image-related scientific work</li>
-              <li>Ability to work seriously in structured environments requiring consistency</li>
-            </ul>
-            <div class="detail-note">
-              This part of my profile matters because it shows that my interests are not generic. They are already moving toward actual research, instrumentation, and technical contribution.
-            </div>
-          </div>
-        </div>
-        <div class="tile-grid">
-          <div class="tile video-tile">
-            <h3>Presentation video</h3>
-            <p>A formal presentation tied to Lighthouse Schools.</p>
-            <video controls preload="metadata" poster="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%232.jpg">
-              <source src="OmerGivingPresentationofTheLighthouseSchoolstoaGroupof300People.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="Omer,StandingNexttoDr.AkifTheLighthouseSchools%27FounderBothinAprofessionalsuitgivingapresentation.jpg" alt="Omer standing next to Dr. Akif" />
-            </div>
-            <h3>Professional presentation setting</h3>
-            <p>Relevant because it reinforces both scientific seriousness and communication ability.</p>
-          </div>
-          <div class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg" alt="Omer presenting the OSCAR project" />
-            </div>
-            <h3>Project communication</h3>
-            <p>Shows comfort with presenting structured ideas publicly and working with others.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="page" id="academics" data-page="academics">
       <div class="container">
         <div class="eyebrow">Academics</div>
@@ -714,57 +702,143 @@
       <div class="container">
         <div class="eyebrow">Accomplishments</div>
         <div class="card">
-          <h2>Roles and recognitions that reflect trust</h2>
+          <h2>Selected accomplishments</h2>
           <p>
-            This section focuses on concrete positions and recognitions rather than general personality claims. These are the kinds of responsibilities that show other people were willing to trust me in meaningful ways.
+            This section is intentionally structured as a clean, left-aligned list. Each accomplishment has a short label, a supporting image, and a button that opens a dedicated detail page with more explanation.
           </p>
         </div>
-        <div class="stats-grid">
-          <div class="stat">
-            <div class="stat-number">Head RA</div>
-            <p>One of the two Head RAs on the dormitory side.</p>
-          </div>
-          <div class="stat">
-            <div class="stat-number">TA</div>
-            <p>Teaching Assistant for two classes.</p>
-          </div>
-          <div class="stat">
-            <div class="stat-number">Selected</div>
-            <p>Chosen for formal roles rather than casually participating.</p>
-          </div>
-          <div class="stat">
-            <div class="stat-number">Recognized</div>
-            <p>Student of the Month and visible school involvement.</p>
+
+        <div class="accomplishment-list">
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Leadership</div>
+              <h3>Head RA</h3>
+              <p>One of the two Head RAs on the dormitory side, with recurring leadership responsibility and direct coordination with school administration.</p>
+              <a class="btn btn-primary" href="#accomplishment-head-ra" data-page-link="accomplishment-head-ra">Read more</a>
+            </div>
+            <div class="list-media"><img src="OmerWithHisRAGroupSelfie.jpg" alt="Omer with his RA group selfie" /></div>
+          </article>
+
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Teaching</div>
+              <h3>Teaching Assistant</h3>
+              <p>Selected as a TA for Foundations of Islamic Faith and Prophet’s Life and Personality.</p>
+              <a class="btn btn-primary" href="#accomplishment-ta" data-page-link="accomplishment-ta">Read more</a>
+            </div>
+            <div class="list-media"><img src="APictureShowingCurrentTeacherAssistants(TA%27s)atTheLighthouseSchools,thisistheschool%27sofficialpost.jpg" alt="Official post showing current teacher assistants" /></div>
+          </article>
+
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Research</div>
+              <h3>Lighthouse Biophysics Research Fellowship</h3>
+              <p>Selective long-term fellowship centered on biophysics, microscopy, engineering design, and computational analysis.</p>
+              <a class="btn btn-primary" href="#accomplishment-fellowship" data-page-link="accomplishment-fellowship">Read more</a>
+            </div>
+            <div class="list-media"><img src="Omer,StandingNexttoDr.AkifTheLighthouseSchools%27FounderBothinAprofessionalsuitgivingapresentation.jpg" alt="Omer standing next to Dr. Akif" /></div>
+          </article>
+
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Recognition</div>
+              <h3>Student of the Month</h3>
+              <p>A visible recognition tied to consistency, conduct, and contribution within school life.</p>
+              <a class="btn btn-primary" href="#accomplishment-student-month" data-page-link="accomplishment-student-month">Read more</a>
+            </div>
+            <div class="list-media"><img src="OmerStudentofTheMonthNovember.jpg" alt="Omer Student of the Month" /></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="accomplishment-head-ra" data-page="accomplishment-head-ra">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Accomplishment detail</div>
+          <h2>Head RA</h2>
+          <p>
+            At the end of 9th grade, I and two other students were selected to become RAs for the following year. I currently serve as one of the two <strong>Head RAs</strong> on the dormitory side.
+          </p>
+          <p>
+            This role includes daily meetings with administration, dorm directors, residential life coordinators, and principals about policy changes, implementation, and student feedback. I also lead my own RA group and hold weekly progress meetings focused on grades, wellbeing, and overall student development.
+          </p>
+          <p>
+            What makes this accomplishment meaningful is that it reflects trust, consistency, and the ability to work within real structures of responsibility. It is not just a title; it involves recurring accountability.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
           </div>
         </div>
-        <div class="accomplishment-grid">
-          <article class="accomplishment-card">
-            <div class="accomplishment-image">
-              <img src="APictureShowingCurrentTeacherAssistants(TA%27s)atTheLighthouseSchools,thisistheschool%27sofficialpost.jpg" alt="Official post showing current TAs" />
-            </div>
-            <div class="accomplishment-body">
-              <h3>Teaching Assistant</h3>
-              <p>Chosen as a TA for Foundations of Islamic Faith and Prophet’s Life and Personality.</p>
-            </div>
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <div class="gallery-image"><img src="OmerWithHisRAGroup%232.jpg" alt="Omer with his RA group" /></div>
+            <div class="gallery-body"><h3>RA group</h3><p>A direct visual tied to residential leadership.</p></div>
           </article>
-          <article class="accomplishment-card">
-            <div class="accomplishment-image">
-              <img src="OmerStudentofTheMonthNovember.jpg" alt="Omer Student of the Month" />
-            </div>
-            <div class="accomplishment-body">
-              <h3>Student of the Month</h3>
-              <p>A visible recognition tied to consistency, conduct, and contribution.</p>
-            </div>
+          <article class="gallery-card">
+            <div class="gallery-image"><img src="OmerWithHisRAGroupatThousandTales,RestaurantinChicagoEatingDinner.jpg" alt="Omer with his RA group at dinner" /></div>
+            <div class="gallery-body"><h3>Group dinner</h3><p>Shows the community-building side of mentorship and leadership.</p></div>
           </article>
-          <article class="accomplishment-card">
-            <div class="accomplishment-image">
-              <img src="OmerWithHisRAGroupSelfie.jpg" alt="Omer with his RA group selfie" />
-            </div>
-            <div class="accomplishment-body">
-              <h3>Residential leadership</h3>
-              <p>Head RA leadership expressed not only through structure, but through real student relationships.</p>
-            </div>
-          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="accomplishment-ta" data-page="accomplishment-ta">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Accomplishment detail</div>
+          <h2>Teaching Assistant</h2>
+          <p>
+            This year I was chosen as one of the school’s Teaching Assistants. I serve as the TA for <strong>Foundations of Islamic Faith</strong> and <strong>Prophet’s Life and Personality</strong>.
+          </p>
+          <p>
+            That role reflects more than just academic strength. It also suggests professionalism, reliability, and the ability to support a classroom environment in a structured way.
+          </p>
+          <p>
+            It fits well with the broader profile presented on this site: I am not only interested in learning for myself, but also in being useful in environments where responsibility matters.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="accomplishment-fellowship" data-page="accomplishment-fellowship">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Accomplishment detail</div>
+          <h2>Lighthouse Biophysics Research Fellowship</h2>
+          <p>
+            The Lighthouse Biophysics Research Fellowship is a selective extracurricular research program dedicated to advanced study in <strong>biophysics, quantitative biology, microscopy, engineering design, and computational analysis</strong>.
+          </p>
+          <p>
+            The fellowship is designed for students prepared to think critically, work with precision, and contribute to projects that extend beyond a single semester or school year. It is intended as a long-term commitment through graduation, with strong emphasis on maturity, integrity, academic discipline, and laboratory standards.
+          </p>
+          <p>
+            This accomplishment belongs with the other major achievements on the site because it shows alignment between my interests and a serious, selective, research-oriented program.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="accomplishment-student-month" data-page="accomplishment-student-month">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Accomplishment detail</div>
+          <h2>Student of the Month</h2>
+          <p>
+            Being recognized as <strong>Student of the Month</strong> matters because it reflects a broader pattern rather than a single isolated moment. Recognition like this usually points to consistency, visible contribution, and a dependable presence within school life.
+          </p>
+          <p>
+            On this site, it works best as supporting evidence that my profile is not just self-described. There are also visible signs that others have noticed and trusted my contribution.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
+          </div>
         </div>
       </div>
     </section>
@@ -827,41 +901,96 @@
     <section class="page" id="projects" data-page="projects">
       <div class="container">
         <div class="eyebrow">Projects</div>
-        <div class="tile-grid">
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg" alt="Omer presenting OSCAR" />
+        <div class="card">
+          <h2>Projects and project-related work</h2>
+          <p>
+            Like the accomplishments section, this page is now structured as a clean list. Each project has a short summary and a detail page for a fuller explanation.
+          </p>
+        </div>
+
+        <div class="accomplishment-list">
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Presentation</div>
+              <h3>OSCAR Project</h3>
+              <p>A public-facing business project presentation completed with partners.</p>
+              <a class="btn btn-primary" href="#project-oscar" data-page-link="project-oscar">Read more</a>
             </div>
-            <h3>OSCAR project presentation</h3>
-            <p>Evidence of structured project work, collaboration, and public-facing communication.</p>
+            <div class="list-media"><img src="OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg" alt="Omer presenting OSCAR" /></div>
           </article>
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%231.jpg" alt="Omer giving a presentation" />
+
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Communication</div>
+              <h3>Lighthouse Presentation</h3>
+              <p>Formal presentation experience that supports the professional and public-speaking side of my portfolio.</p>
+              <a class="btn btn-primary" href="#project-lighthouse-presentation" data-page-link="project-lighthouse-presentation">Read more</a>
             </div>
-            <h3>Formal school presentation</h3>
-            <p>Supports the overall profile of confidence, presentation skill, and professionalism.</p>
+            <div class="list-media"><img src="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%231.jpg" alt="Omer giving a presentation" /></div>
           </article>
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmeratJobFairNotonBus%232.jpg" alt="Omer at a job fair" />
+
+          <article class="list-accomplishment">
+            <div class="list-copy">
+              <div class="list-kicker">Technical direction</div>
+              <h3>3D Printing and CAD Work</h3>
+              <p>Hands-on technical work in modeling, printing, troubleshooting, and building.</p>
+              <a class="btn btn-primary" href="#project-cad-printing" data-page-link="project-cad-printing">Read more</a>
             </div>
-            <h3>Career exploration</h3>
-            <p>Early professional exposure tied to long-term engineering and scientific interests.</p>
+            <div class="list-media"><img src="OmerWithHisFriendAppearingtobeCollectingSomeElectronicCircuitRelatedThingsintoAcardboardbox.heic" alt="Omer with a friend handling electronics-related items" /></div>
           </article>
         </div>
-        <div class="grid-2" style="margin-top:22px;">
-          <div class="card">
-            <h3>Technical project direction</h3>
-            <p>
-              My broader project direction includes 3D CAD modeling, 3D printing, computational work, and interest in AI-related scientific imaging tools. Even where work is still in progress, the direction is already coherent and meaningful.
-            </p>
+      </div>
+    </section>
+
+    <section class="page" id="project-oscar" data-page="project-oscar">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Project detail</div>
+          <h2>OSCAR Project</h2>
+          <p>
+            The OSCAR project is important on this site because it shows more than classroom participation. It shows collaborative work, preparation, presentation, and the ability to communicate an idea clearly in a more formal setting.
+          </p>
+          <p>
+            It supports the larger theme of the portfolio: I work best when I can combine structure, communication, and initiative.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
           </div>
-          <div class="card">
-            <h3>Why this matters</h3>
-            <p>
-              A strong portfolio should not just list interests. It should show recurring evidence of building, presenting, troubleshooting, organizing, and following through. That is the logic behind how the site presents my projects.
-            </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="project-lighthouse-presentation" data-page="project-lighthouse-presentation">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Project detail</div>
+          <h2>Lighthouse Presentation</h2>
+          <p>
+            My Lighthouse presentation images and video are included because they represent the public-facing side of my profile. They show comfort with formal communication, visual professionalism, and confidence presenting in front of others.
+          </p>
+          <p>
+            This complements the more technical and leadership-oriented parts of the portfolio by showing that I can also explain and represent ideas clearly.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="project-cad-printing" data-page="project-cad-printing">
+      <div class="container">
+        <div class="card">
+          <div class="eyebrow">Project detail</div>
+          <h2>3D Printing and CAD Work</h2>
+          <p>
+            A major part of my technical identity comes from years of hands-on work with 3D printing and CAD. This includes modeling, machine maintenance, troubleshooting, material choice, and practical problem-solving.
+          </p>
+          <p>
+            It belongs in the projects area because it is an actual body of recurring technical work rather than a vague interest. It also connects directly to my long-term interest in engineering and research-heavy environments.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
           </div>
         </div>
       </div>
