@@ -1,199 +1,1192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omer Kural | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omer Kural | Portfolio</title>
+  <meta name="description" content="Omer Kural — student researcher, engineer-in-training, Head RA, TA, and Lighthouse Biophysics Research Fellowship participant." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-soft: #151b23;
+      --card: rgba(255,255,255,0.04);
+      --card-strong: rgba(255,255,255,0.07);
+      --text: #e8edf2;
+      --muted: #a8b3c2;
+      --line: rgba(255,255,255,0.09);
+      --accent: #c9a66b;
+      --accent-2: #7fb7a8;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+      --nav-h: 78px;
+    }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(201,166,107,0.10), transparent 25%),
+        radial-gradient(circle at top right, rgba(127,183,168,0.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; }
 
-<style>
-:root {
-    --bg:#e6f0ff;
-    --text:#0f1a2b;
-    --accent:#1e3a8a;
-}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
-section{padding:80px 20px;scroll-snap-align:start;}
-html{scroll-snap-type:y mandatory;}
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-/* NAVBAR */
-nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:15px 30px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-nav .links a{margin-left:20px;color:var(--accent);text-decoration:none;font-weight:600;transition:0.3s;}
-nav .links a:hover{color:#0f1a2b;}
-nav .toggle{cursor:pointer;font-size:1.2em;}
+    .section {
+      padding: 96px 0;
+      scroll-margin-top: calc(var(--nav-h) + 18px);
+    }
 
-/* HERO */
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-.hero img{width:180px;border-radius:50%;margin-bottom:20px;animation: float 4s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-.hero h1{font-size:3em;margin-bottom:15px;}
-.hero p{font-size:1.5em;color:var(--accent);margin-bottom:25px;min-height:40px;}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
 
-/* BUTTON */
-.btn{background:var(--accent);padding:12px 20px;border-radius:8px;color:white;text-decoration:none;font-weight:600;transition:0.3s;}
-.btn:hover{transform:scale(1.05);}
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(201,166,107,0.55);
+    }
 
-/* ABOUT / ESSAY */
-.about p{margin:15px 0;line-height:1.7;}
-.about h3{margin-top:25px;color:var(--accent);}
+    h1, h2, h3, h4 { line-height: 1.12; margin: 0 0 14px; }
+    h1 {
+      font-size: clamp(2.8rem, 5vw, 5.6rem);
+      letter-spacing: -0.04em;
+    }
+    h2 {
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      letter-spacing: -0.03em;
+    }
+    h3 {
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
 
-/* STATS */
-.stats{display:flex;justify-content:space-around;text-align:center;padding:50px 0;}
-.stats div{flex:1;}
-.stats h2{font-size:2.5em;color:var(--accent);}
+    p { margin: 0 0 14px; color: var(--muted); }
+    strong { color: var(--text); }
 
-/* CLASSES */
-.classes{display:flex;flex-wrap:wrap;gap:15px;}
-.classes div{background:white;padding:15px;border-radius:10px;flex:1;min-width:250px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--nav-h);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      background: rgba(13,17,23,0.72);
+    }
 
-/* PROJECTS */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-.project{background:white;border-radius:12px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.1);transition:0.3s;}
-.project:hover{transform:scale(1.03);}
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-/* IMAGES PARALLAX */
-.parallax{background-size:cover;height:60vh;border-radius:12px;margin:50px 0;}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-/* MOBILE */
-@media(max-width:768px){ .stats{flex-direction:column;gap:20px;} .hero h1{font-size:2.2em;} .hero p{font-size:1.2em;} }
-</style>
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(201,166,107,0.25), rgba(127,183,168,0.25));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.96rem;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 64px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-media {
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,166,107,0.15), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.08rem, 1.5vw, 1.28rem);
+      color: var(--text);
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+
+    .typing-line {
+      min-height: 34px;
+      font-size: 1rem;
+      color: var(--accent-2);
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #d6b888);
+      color: #111;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .hero-point {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .hero-point strong { display: block; margin-bottom: 4px; }
+    .hero-point span { color: var(--muted); font-size: 0.94rem; }
+
+    .hero-media {
+      overflow: hidden;
+      position: relative;
+      min-height: 620px;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-badge {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      backdrop-filter: blur(16px);
+      background: rgba(13,17,23,0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-badge strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .timeline-year {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline-item ul,
+    .class-card ul,
+    .clean-list {
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .class-card {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .class-card h3 {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .class-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .leadership-grid,
+    .project-grid,
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .project-card,
+    .gallery-card,
+    .lead-card {
+      overflow: hidden;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .project-card:hover,
+    .gallery-card:hover,
+    .lead-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,166,107,0.4);
+    }
+
+    .project-card img,
+    .gallery-card img,
+    .lead-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .project-body,
+    .gallery-body,
+    .lead-body {
+      padding: 18px 18px 20px;
+    }
+
+    .project-tag,
+    .section-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .video-shell {
+      margin-top: 28px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: #0a0d12;
+    }
+
+    .video-shell video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font: inherit;
+      resize: vertical;
+    }
+
+    input::placeholder, textarea::placeholder { color: #8c97a5; }
+    textarea { min-height: 150px; }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .grid-2,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-media { min-height: auto; }
+
+      .leadership-grid,
+      .project-grid,
+      .gallery-grid,
+      .stats-grid,
+      .class-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root { --nav-h: 108px; }
+
+      .site-nav {
+        height: auto;
+        padding: 10px 0;
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 6px 0;
+      }
+
+      .nav-links {
+        gap: 12px 16px;
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-copy,
+      .card {
+        padding: 22px;
+      }
+
+      .hero-point,
+      .timeline-item,
+      .class-card,
+      .contact-item,
+      .stat,
+      .project-body,
+      .gallery-body,
+      .lead-body {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-points,
+      .leadership-grid,
+      .project-grid,
+      .gallery-grid,
+      .stats-grid,
+      .class-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card img,
+      .gallery-card img,
+      .lead-card img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">Omer Kural</div>
-    <div class="links">
-        <a href="#hero">Home</a>
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Omer Kural home">
+        <span class="brand-mark">OK</span>
+        <span>Omer Kural</span>
+      </a>
+      <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#classes">Classes</a>
+        <a href="#research">Research</a>
+        <a href="#academics">Academics</a>
+        <a href="#leadership">Leadership</a>
         <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
+      </div>
     </div>
-    <div class="toggle" onclick="toggleMode()">🌙</div>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-    <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerAtIowaCapitol(GoodProfileIntroductionPicture).jpg" alt="Omer Kural">
-    <h1>Omer Kural</h1>
-    <p id="typing"></p>
-    <a href="resume.pdf" class="btn" download>Download Resume</a>
-</section>
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div>
+            <div class="eyebrow">Student researcher · engineer-in-training · mentor</div>
+            <h1>Building across science, engineering, and leadership.</h1>
+            <p class="hero-subtitle">
+              I am <strong>Omer Kural</strong>, a student focused on <strong>mechanical engineering, biochemistry, and neuroscience</strong>, with hands-on experience spanning <strong>3D printing, microscopy, computation, student leadership, and public presentation</strong>.
+            </p>
+            <div id="typing-text" class="typing-line" aria-live="polite"></div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">Get in touch</a>
+              <a class="btn btn-secondary" href="resume.pdf" download>Download resume</a>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/in/omer-kural-1a7a24391" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-    <h2>About Me</h2>
-    <p>I am a dedicated student and researcher combining experience in <strong>3D CAD, 3D printing, biophysics, AI, and computational analysis</strong>. I aim to double major in <strong>Mechanical Engineering & Biochemistry</strong> and minor in <strong>Neuroscience</strong>.</p>
+          <div class="hero-points">
+            <div class="hero-point">
+              <strong>Lighthouse Biophysics Research Fellowship</strong>
+              <span>Selective long-term research program in biophysics, microscopy, engineering design, and computation.</span>
+            </div>
+            <div class="hero-point">
+              <strong>Head RA and TA</strong>
+              <span>Leadership in residential life, mentoring, weekly student check-ins, and classroom support.</span>
+            </div>
+            <div class="hero-point">
+              <strong>3D CAD and fabrication</strong>
+              <span>Extensive work in Fusion 360, TinkerCAD, Ender 3 V2 printing, troubleshooting, and materials selection.</span>
+            </div>
+            <div class="hero-point">
+              <strong>Research and presentation</strong>
+              <span>Experience with live-cell work, microscopy exposure, computational image analysis, and formal presentations.</span>
+            </div>
+          </div>
+        </div>
 
-    <h3>Lighthouse Biophysics Research Fellowship</h3>
-    <p>I participate in this selective program integrating biology, engineering, physics, and computation. I have experience building microscopes, culturing live cells, and analyzing scientific data computationally.</p>
+        <div class="hero-media reveal">
+          <img src="OmerAtIowaCapitol(GoodProfileIntroductionPicture).jpg" alt="Omer Kural at the Iowa Capitol" />
+          <div class="hero-badge">
+            <strong>Current focus</strong>
+            <p>Preparing for an interdisciplinary future at the intersection of engineering, biology, and applied scientific research.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h3>Leadership & Teaching</h3>
-    <p>• Head RA at Lighthouse Schools dormitory, overseeing student groups, weekly progress checks, policy implementation, and sponsor events.<br>
-       • Teaching Assistant for Foundations of Islamic Faith & Prophet’s Personality classes.<br>
-       • Experience presenting to groups, managing teams, and mentoring students.</p>
+    <section id="about" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">About</div>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h2>A profile built on initiative and follow-through.</h2>
+            <p>
+              My academic path has been shaped by environments that demanded both <strong>independence</strong> and <strong>adaptability</strong>. In eighth grade, I attended <strong>Fountain Academy</strong> in Chicago, my first boarding-school experience. In ninth grade, I joined <strong>The Lighthouse Schools</strong> in Iowa during its opening year and became part of a new institution from the ground up.
+            </p>
+            <p>
+              That experience reinforced qualities that now define how I work: <strong>ownership</strong>, <strong>discipline</strong>, and a willingness to step into responsibility early. I am especially drawn to opportunities that combine scientific rigor with practical building, whether that means technical fabrication, research preparation, mentoring peers, or presenting ideas clearly.
+            </p>
+            <p>
+              I plan to pursue a <strong>double major in Mechanical Engineering and Biochemistry</strong>, with sustained interest in <strong>Neuroscience</strong>. What motivates me most is not a single subject in isolation, but the possibility of integrating systems thinking, biological understanding, and engineering design into work that is both technically serious and genuinely useful.
+            </p>
+          </div>
 
-    <h3>Key Experiences</h3>
-    <p>• Intel Lab summer internship in Columbus<br>
-       • Intensive lab research and imaging using high-end microscopes<br>
-       • AI model development for scientific imaging<br>
-       • 3+ years of 3D printing and CAD experience</p>
+          <div class="card reveal">
+            <h3>Core strengths</h3>
+            <div class="pill-list">
+              <span class="pill">3D CAD modeling</span>
+              <span class="pill">3D printing</span>
+              <span class="pill">Microscopy exposure</span>
+              <span class="pill">Computational analysis</span>
+              <span class="pill">Public speaking</span>
+              <span class="pill">Student mentorship</span>
+              <span class="pill">Leadership meetings</span>
+              <span class="pill">Research discipline</span>
+            </div>
 
-    <!-- Example image gallery -->
-    <div class="projects" style="margin-top:30px;">
-        <div class="project"><img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerGivingPresentationofTheLighthouseSchools.mp4" alt="Presentation" style="width:100%;border-radius:12px;"></div>
-        <div class="project"><img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/Omer,InaSuit,inhishome.jpg" alt="Professional Suit" style="width:100%;border-radius:12px;"></div>
-        <div class="project"><img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerAtFountainAcademy#2.jpg" alt="Fountain Academy" style="width:100%;border-radius:12px;"></div>
-        <div class="project"><img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerWithHisRAGroup#2.jpg" alt="RA Group" style="width:100%;border-radius:12px;"></div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-year">Fountain Academy</div>
+                <div>
+                  <strong>First boarding-school experience in Chicago.</strong>
+                  <p>Built academic maturity while balancing standard coursework with religious study and a structured residential environment.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">Lighthouse</div>
+                <div>
+                  <strong>Part of the school’s founding student body.</strong>
+                  <p>Entered a new institution in its first year, then grew into formal leadership roles in residential life and classroom support.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">Current direction</div>
+                <div>
+                  <strong>Interdisciplinary science and engineering.</strong>
+                  <p>Developing a portfolio centered on engineering, biophysics, fabrication, research exposure, and communication.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid reveal">
+          <div class="stat">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">years of 3D printing and CAD experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">formal leadership tracks: Head RA and TA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">current AP computer science courses</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">selective long-term biophysics fellowship</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Research and technical profile</div>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h2>Lighthouse Biophysics Research Fellowship</h2>
+            <p>
+              The <strong>Lighthouse Biophysics Research Fellowship</strong> is a selective, multi-year extracurricular program centered on <strong>biophysics, quantitative biology, microscopy, engineering design, and computational analysis</strong>. Its structure matches the kind of work I am most drawn to: long-horizon, technically demanding, and grounded in responsibility.
+            </p>
+            <p>
+              My background aligns naturally with that environment. I have spent years working with <strong>3D CAD and 3D printing</strong>, including maintaining and troubleshooting my own Ender 3 V2, designing models, and selecting materials based on performance needs. I understand that technical work is rarely flawless on the first pass; it requires patience, persistence, and an ability to diagnose systems rather than simply use them.
+            </p>
+            <p>
+              Beyond fabrication, I have had direct exposure to research environments through lab visits, imaging work, and an intensive period working with <strong>cultured breast cancer cells</strong> and a high-end research microscope. I have also been exploring the computational side of scientific work, including basic <strong>Python</strong>, stronger experience in <strong>JavaScript</strong>, and early work toward an <strong>AI-assisted imaging project</strong> inspired by microscopy data.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Why this path fits me</h3>
+            <p>
+              I am especially interested in work that does not split theory from practice. The most compelling problems, to me, are the ones that require both <strong>careful reasoning</strong> and <strong>actual building</strong>: instruments, workflows, analysis pipelines, or systems that must function under real constraints.
+            </p>
+            <p>
+              That is why my long-term goals converge around <strong>Mechanical Engineering</strong>, <strong>Biochemistry</strong>, and <strong>Neuroscience</strong>. Engineering trains precision and systems thinking. Biochemistry brings molecular depth. Neuroscience opens a path toward understanding complexity in living systems from a human-centered perspective.
+            </p>
+            <p>
+              Together, those interests support the kind of future I want: one where I can contribute to technical projects with real scientific weight, while continuing to develop as both a builder and a thinker.
+            </p>
+            <h3 style="margin-top:24px;">Selected technical areas</h3>
+            <ul class="clean-list">
+              <li>Fusion 360 and TinkerCAD</li>
+              <li>Ender 3 V2 operation, maintenance, and troubleshooting</li>
+              <li>Material familiarity including PLA, PETG, and TPU</li>
+              <li>Basic Python and stronger familiarity with JavaScript</li>
+              <li>Scientific imaging interest and AI-driven image enhancement concepts</li>
+              <li>Presentation experience in academic and school settings</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="video-shell reveal" aria-label="Presentation video">
+          <video controls preload="metadata" poster="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%232.jpg">
+            <source src="OmerGivingPresentationofTheLighthouseSchoolstoaGroupof300People.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section id="academics" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Academics</div>
+        <div class="card reveal">
+          <h2>Coursework organized by stage</h2>
+          <p>
+            Below is a structured view of my academic progression, from my first boarding-school year through current courses and near-term plans. The pattern is consistent: each year has moved toward greater challenge, broader scope, and stronger alignment with my long-term scientific and engineering interests.
+          </p>
+        </div>
+
+        <div class="class-grid">
+          <div class="class-card reveal">
+            <h3>8th grade · Fountain Academy</h3>
+            <ul>
+              <li>Algebra 1</li>
+              <li>8th Grade Science</li>
+              <li>8th Grade World History</li>
+              <li>Biology / general science coursework</li>
+              <li>Religious classes</li>
+            </ul>
+            <p class="class-note">First structured boarding-school experience, building academic discipline and independence.</p>
+          </div>
+
+          <div class="class-card reveal">
+            <h3>9th grade · Lighthouse Schools</h3>
+            <ul>
+              <li>Biology</li>
+              <li>Geometry</li>
+              <li>English 9</li>
+              <li>Global History Since 1500 (ASU dual credit)</li>
+              <li>Introduction to Health and Wellness (ASU)</li>
+              <li>Online Learning Success for Universal Learners (ASU)</li>
+              <li>Aqaid</li>
+              <li>Arabic 1</li>
+              <li>Islamic Studies</li>
+              <li>Quran Memorization</li>
+            </ul>
+          </div>
+
+          <div class="class-card reveal">
+            <h3>10th grade · Current</h3>
+            <ul>
+              <li>Algebra 2</li>
+              <li>English 10</li>
+              <li>AP Psychology</li>
+              <li>AP Computer Science A</li>
+              <li>AP Computer Science Principles</li>
+              <li>AP Environmental Science</li>
+              <li>College and Career Readiness</li>
+              <li>Public Speaking</li>
+              <li>Basics of Quranic Literacy</li>
+              <li>Arabic 2</li>
+              <li>Foundations of Islamic Faith</li>
+              <li>Prophet’s Life and Personality</li>
+            </ul>
+          </div>
+
+          <div class="class-card reveal">
+            <h3>11th grade · Planned</h3>
+            <ul>
+              <li>AP Biology</li>
+              <li>AP Chemistry</li>
+              <li>AP Physics</li>
+              <li>AP Calculus</li>
+              <li>AP English Language and Composition</li>
+              <li>Social Emotional Learning 1</li>
+            </ul>
+            <p class="class-note">Planned schedule centers more directly on advanced science, math, and analytical writing.</p>
+          </div>
+
+          <div class="class-card reveal">
+            <h3>12th grade · In development</h3>
+            <ul>
+              <li>Senior-year schedule not yet finalized</li>
+            </ul>
+            <p class="class-note">Final course selection will be shaped to support college readiness and sustained research alignment.</p>
+          </div>
+
+          <div class="class-card reveal">
+            <h3>Academic direction</h3>
+            <ul>
+              <li>Mechanical Engineering</li>
+              <li>Biochemistry</li>
+              <li>Neuroscience</li>
+              <li>Research experience as a long-term differentiator</li>
+              <li>Communication and leadership as part of academic profile</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Leadership and service</div>
+        <div class="card reveal">
+          <h2>Responsibility in residential life and the classroom</h2>
+          <p>
+            At the end of ninth grade, I was selected as one of the Residential Assistants for the following year. I currently serve as one of the <strong>Head RAs</strong> on the dormitory side of school life. That role involves more than symbolic leadership: it includes daily interaction with administration, dorm leadership, and student concerns, as well as responsibility for my own group of students.
+          </p>
+          <p>
+            I also serve as a <strong>Teaching Assistant</strong> for <strong>Foundations of Islamic Faith</strong> and <strong>Prophet’s Life and Personality</strong>. Together, these roles reflect a pattern I value deeply: earning trust, operating with professionalism, and being useful to the people and systems around me.
+          </p>
+        </div>
+
+        <div class="leadership-grid">
+          <article class="lead-card reveal">
+            <img src="OmerWithHisRAGroup%232.jpg" alt="Omer with his RA group" />
+            <div class="lead-body">
+              <div class="section-tag">Head RA</div>
+              <h3>Student mentorship and group oversight</h3>
+              <p>Weekly progress checks, monitoring academics and wellbeing, and maintaining real accountability within a student group.</p>
+            </div>
+          </article>
+
+          <article class="lead-card reveal">
+            <img src="APictureShowingCurrentTeacherAssistants(TA%27s)atTheLighthouseSchools,thisistheschool%27sofficialpost.jpg" alt="Official post showing current teacher assistants at Lighthouse Schools" />
+            <div class="lead-body">
+              <div class="section-tag">Teaching Assistant</div>
+              <h3>Supporting instruction with professionalism</h3>
+              <p>Classroom assistance, organization, communication, and the discipline required to support teachers well.</p>
+            </div>
+          </article>
+
+          <article class="lead-card reveal">
+            <img src="OmerStudentofTheMonthNovember.jpg" alt="Omer recognized as Student of the Month" />
+            <div class="lead-body">
+              <div class="section-tag">Recognition</div>
+              <h3>Trust built through consistency</h3>
+              <p>Recognition matters most when it reflects patterns of conduct, discipline, and follow-through over time.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Projects and experiences</div>
+        <div class="card reveal">
+          <h2>Technical work, problem-solving, and public presentation</h2>
+          <p>
+            My strongest projects tend to sit between engineering, practical reasoning, and communication. Some are formal and research-related. Others are independent and hands-on. All of them reflect the same instinct: <strong>understand the system, solve the problem, and make the result useful</strong>.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <img src="OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg" alt="Omer presenting the OSCAR business project with partners" />
+            <div class="project-body">
+              <div class="project-tag">Presentation</div>
+              <h3>OSCAR business presentation</h3>
+              <p>Worked with partners to present a project publicly, combining teamwork, structure, and persuasive communication.</p>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%231.jpg" alt="Omer giving a presentation at Lighthouse Schools" />
+            <div class="project-body">
+              <div class="project-tag">Public speaking</div>
+              <h3>Formal presentation experience</h3>
+              <p>Comfortable speaking in structured settings, including presentations tied to school and broader community events.</p>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img src="OmerAtJobFaironBus%231.jpg" alt="Omer at a job fair" />
+            <div class="project-body">
+              <div class="project-tag">Career exposure</div>
+              <h3>Early professional exploration</h3>
+              <p>Actively seeking environments that connect current skill-building with long-term scientific and engineering goals.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top: 24px;">
+          <div class="card reveal">
+            <h3>Independent technical problem-solving</h3>
+            <p>
+              One example that reflects how I think came when our dishwasher failed at home. Rather than stop at frustration, I investigated the issue, opened the unit carefully, identified a broken connection, and used a soldering iron to repair it. The machine worked again afterward.
+            </p>
+            <p>
+              What mattered most was not only the fix itself, but the lesson: strong technical work is not just boldness; it also requires efficient troubleshooting, model-specific research, and knowing when to move from exploration to method.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3>Research-aligned fabrication and computing</h3>
+            <p>
+              My experience with 3D printing and CAD is not superficial hobby exposure. It includes repeated troubleshooting, replacement-part fabrication, materials judgment, and a strong grasp of how machines behave over time.
+            </p>
+            <p>
+              Combined with interest in scientific imaging and early AI ideas for microscopy-related workflows, that background gives me a practical entry point into biophysics research and engineering-heavy scientific environments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Selected gallery</div>
+        <div class="card reveal">
+          <h2>Moments that add context</h2>
+          <p>
+            A strong personal site should not feel like a random photo dump. The gallery below is curated to reinforce the profile: professionalism, presentations, student leadership, school milestones, and visible engagement in meaningful environments.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card reveal">
+            <img src="Omer,StandingNexttoDr.AkifTheLighthouseSchools%27FounderBothinAprofessionalsuitgivingapresentation.jpg" alt="Omer standing next to Dr. Akif, founder of The Lighthouse Schools" />
+            <div class="gallery-body">
+              <h3>Presentation with school founder</h3>
+              <p>Professional presence in a formal presentation setting.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card reveal">
+            <img src="Omer,InaSuit,inhishome.jpg" alt="Omer in a suit at home" />
+            <div class="gallery-body">
+              <h3>Formal portrait</h3>
+              <p>A clean, professional image appropriate for profile sections and external-facing materials.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card reveal">
+            <img src="FirstYearofLighthouseStudentsCelebratingOmer%27sBirthday.jpg" alt="First-year Lighthouse students celebrating Omer's birthday" />
+            <div class="gallery-body">
+              <h3>Community and belonging</h3>
+              <p>Part of the founding student experience at Lighthouse Schools.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card reveal">
+            <img src="OmerAtTheLighthouseSchools.jpg" alt="Omer at The Lighthouse Schools" />
+            <div class="gallery-body">
+              <h3>School identity</h3>
+              <p>Represents the environment in which much of this growth has taken place.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card reveal">
+            <img src="OmerWithHisRAGroupatThousandTales,RestaurantinChicagoEatingDinner.jpg" alt="Omer with his RA group at dinner in Chicago" />
+            <div class="gallery-body">
+              <h3>Leadership beyond meetings</h3>
+              <p>Mentorship also includes building trust and positive group culture.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card reveal">
+            <img src="OmeratFountainAcademy%233.jpg" alt="Omer at Fountain Academy" />
+            <div class="gallery-body">
+              <h3>Earlier chapter</h3>
+              <p>A nod to the first boarding-school phase that shaped later growth.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="eyebrow reveal">Contact</div>
+        <div class="card reveal">
+          <h2>Reach out</h2>
+          <p>
+            For academic, research, presentation, leadership, or general professional inquiries, the easiest points of contact are below.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card reveal">
+            <div class="contact-list">
+              <div class="contact-item">
+                <span>Email</span>
+                <strong><a href="mailto:omerkural@tlhschools.org">omerkural@tlhschools.org</a></strong>
+              </div>
+              <div class="contact-item">
+                <span>LinkedIn</span>
+                <strong><a href="https://www.linkedin.com/in/omer-kural-1a7a24391" target="_blank" rel="noreferrer">linkedin.com/in/omer-kural-1a7a24391</a></strong>
+              </div>
+              <div class="contact-item">
+                <span>Focus areas</span>
+                <strong>Mechanical Engineering · Biochemistry · Neuroscience · Research · Leadership</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <form action="https://formspree.io/f/yourID" method="POST">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="Your email" required />
+              </label>
+              <label>
+                Message
+                <textarea name="message" placeholder="Write your message here" required></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Send message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© 2026 Omer Kural. Single-file portfolio site.</span>
     </div>
-</section>
+  </footer>
 
-<!-- CLASSES -->
-<section id="classes">
-    <h2>Academic Journey</h2>
-    <div class="classes">
-        <div>
-            <h3>8th Grade | Fountain Academy</h3>
-            <p>Algebra 1, 8th Grade Science, 8th Grade World History, Normal Biology, Religious Classes</p>
-        </div>
-        <div>
-            <h3>9th Grade | Lighthouse Schools</h3>
-            <p>Biology, Geometry, English 9, Global History (ASU), Health & Wellness (ASU), Online Learning Success, Aqaid, Arabic 1, Islamic Studies, Quran Memorization</p>
-        </div>
-        <div>
-            <h3>10th Grade | Lighthouse Schools</h3>
-            <p>Algebra 2, English 10, AP Psychology, AP CS A, AP Computer Science Principles, AP Environmental Science, College & Career Readiness, Public Speaking, Basics of Quranic Literacy, Arabic 2, Foundations of Islamic Faith, Prophet’s Life & Personality</p>
-        </div>
-        <div>
-            <h3>11th Grade (Planned)</h3>
-            <p>AP Bio, AP Chem, AP Physics, AP Calculus, AP English Language & Composition, Social Emotional Learning 1</p>
-        </div>
-        <div>
-            <h3>12th Grade (Planned)</h3>
-            <p>To be decided</p>
-        </div>
-    </div>
-</section>
+  <script>
+    const phrases = [
+      "Mechanical Engineering · Biochemistry · Neuroscience",
+      "Research-minded · hands-on · long-term builder",
+      "Head RA · Teaching Assistant · student presenter",
+      "3D CAD · fabrication · microscopy interest · computation"
+    ];
 
-<!-- STATS -->
-<section id="stats">
-    <h2 style="text-align:center;">Achievements & Skills</h2>
-    <div class="stats">
-        <div><h2>3+</h2><p>Years of 3D Printing</p></div>
-        <div><h2>2+</h2><p>Programming Languages</p></div>
-        <div><h2>Leadership</h2><p>Head RA & TA</p></div>
-    </div>
-    <canvas id="chart" style="max-width:600px; margin:30px auto; display:block;"></canvas>
-</section>
+    const typingEl = document.getElementById('typing-text');
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-<!-- PROJECTS -->
-<section id="projects">
-    <h2 style="text-align:center;">Projects</h2>
-    <div class="projects" id="repoList"></div>
-</section>
+    function typeLoop() {
+      const current = phrases[phraseIndex];
+      typingEl.textContent = current.slice(0, charIndex);
 
-<!-- CONTACT -->
-<section id="contact">
-    <h2 style="text-align:center;">Contact Me</h2>
-    <p style="text-align:center;">Email: <a href="mailto:omerkural@tlhschools.org">omerkural@tlhschools.org</a></p>
-    <p style="text-align:center;">LinkedIn: <a href="https://www.linkedin.com/in/omer-kural-1a7a24391/" target="_blank">omer-kural-1a7a24391</a></p>
-</section>
+      if (!deleting && charIndex < current.length) {
+        charIndex++;
+        setTimeout(typeLoop, 42);
+      } else if (!deleting && charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1500);
+      } else if (deleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeLoop, 24);
+      } else {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeLoop, 220);
+      }
+    }
+    typeLoop();
 
-<script>
-// DARK MODE TOGGLE
-function toggleMode(){ document.body.classList.toggle("light"); }
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
 
-// TYPING ANIMATION
-const text="Mechanical Engineer | Biochemist | Neuroscience Enthusiast | RA & TA Leader";
-let i=0;
-function typeEffect(){ if(i<text.length){ document.getElementById("typing").innerHTML+=text.charAt(i); i++; setTimeout(typeEffect,50); } }
-typeEffect();
-
-// GPA / Skills Chart
-const ctx=document.getElementById('chart');
-if(ctx){
-  new Chart(ctx,{type:'line',data:{labels:['8th','9th','10th','11th','12th'],datasets:[{label:'Progress',data:[1,2,3,4,5],borderColor:'#1e3a8a',borderWidth:3,fill:false}]},options:{responsive:true,plugins:{legend:{display:false}}}});
-}
-
-// Fetch GitHub projects (replace YOUR_USERNAME with your GitHub username)
-fetch("https://api.github.com/users/YOUR_USERNAME/repos")
-.then(res=>res.json())
-.then(data=>{
-  const container=document.getElementById("repoList");
-  data.slice(0,6).forEach(repo=>{
-    const div=document.createElement("div");
-    div.className="project";
-    div.innerHTML=`<h3>${repo.name}</h3><p>${repo.description||"No description"}</p><a href="${repo.html_url}" target="_blank" class="btn">View</a>`;
-    container.appendChild(div);
-  });
-});
-</script>
-
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+    sections.forEach(section => sectionObserver.observe(section));
+  </script>
 </body>
 </html>
