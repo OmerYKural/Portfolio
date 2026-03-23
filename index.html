@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omer Kural | Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">OK</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="toggle" onclick="toggleMode()">🌙</div>
+</nav>
+
+<section class="hero">
+  <img src="https://via.placeholder.com/150">
+  <h1>Omer Kural</h1>
+  <p id="typing"></p>
+  <a href="resume.pdf" class="btn">Download Resume</a>
+</section>
+
+<section class="parallax"></section>
+
+<section class="stats">
+  <div><h2>4.0</h2><p>GPA</p></div>
+  <div><h2>3+</h2><p>Projects</p></div>
+  <div><h2>2+</h2><p>AP Classes</p></div>
+</section>
+
+<section>
+  <h2 style="text-align:center;">Video Intro</h2>
+  <div style="display:flex; justify-content:center;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section>
+  <canvas id="chart"></canvas>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
