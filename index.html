@@ -1,1155 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omer Kural | Portfolio</title>
-  <meta name="description" content="Omer Kural — student researcher, Head RA, TA, and aspiring engineer-scientist." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f6f3ec;
-      --bg-soft: #fffdf9;
-      --panel: #ffffff;
-      --panel-2: #f2ede2;
-      --text: #1f2933;
-      --muted: #5f6b76;
-      --line: #ddd4c4;
-      --accent: #274c77;
-      --accent-2: #7d8f69;
-      --accent-3: #c89f65;
-      --shadow: 0 18px 50px rgba(50, 56, 62, 0.09);
-      --radius: 22px;
-      --max: 1180px;
-      --nav-h: 82px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(200,159,101,0.10), transparent 25%),
-        radial-gradient(circle at top right, rgba(39,76,119,0.08), transparent 28%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
+<title>Omer Kural</title>
 
-    a { color: inherit; }
-    img, video { display: block; max-width: 100%; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
+<style>
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --accent: #1e3a8a;
+  --muted: #64748b;
+}
 
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--nav-h);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-      background: rgba(246, 243, 236, 0.88);
-    }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Inter', sans-serif;
+}
 
-    .nav-inner {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height:1.6;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--accent);
-    }
+/* NAV */
+nav {
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+}
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #527aa5);
-      color: #fff;
-      box-shadow: var(--shadow);
-      font-weight: 800;
-    }
+nav a {
+  margin-left:20px;
+  text-decoration:none;
+  color:var(--muted);
+  font-size:14px;
+}
 
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      justify-content: flex-end;
-    }
+nav a:hover {
+  color:var(--text);
+}
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: background .2s ease, color .2s ease;
-    }
+/* HERO */
+.hero {
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 10%;
+}
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent);
-      background: rgba(39,76,119,0.08);
-    }
+.hero h1 {
+  font-size:3.5rem;
+  font-weight:700;
+}
 
-    .page-shell {
-      min-height: calc(100vh - var(--nav-h));
-    }
+.hero p {
+  margin-top:10px;
+  color:var(--muted);
+  font-size:1.2rem;
+  max-width:600px;
+}
 
-    .page {
-      display: none;
-      padding: 42px 0 70px;
-      min-height: calc(100vh - var(--nav-h));
-    }
+/* SECTIONS */
+section {
+  padding:100px 10%;
+  max-width:1000px;
+}
 
-    .page.active {
-      display: block;
-      animation: fadePage .35s ease;
-    }
+h2 {
+  font-size:1.8rem;
+  margin-bottom:20px;
+}
 
-    @keyframes fadePage {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+p {
+  margin-bottom:15px;
+}
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.75);
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 18px;
-    }
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
 
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-3), var(--accent-2));
-    }
+/* CARD */
+.card {
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #e2e8f0;
+  transition:0.2s;
+}
 
-    h1, h2, h3, h4 {
-      margin: 0 0 14px;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-    }
+.card:hover {
+  transform: translateY(-3px);
+}
 
-    h1 { font-size: clamp(2.8rem, 5vw, 5.1rem); }
-    h2 { font-size: clamp(2rem, 3vw, 3rem); }
-    h3 { font-size: 1.15rem; }
+/* IMAGE */
+img {
+  width:100%;
+  border-radius:10px;
+  margin-bottom:10px;
+}
 
-    p { margin: 0 0 14px; color: var(--muted); }
-    strong { color: var(--text); }
+/* SMALL TEXT */
+.muted {
+  color:var(--muted);
+  font-size:14px;
+}
 
-    .hero-grid,
-    .grid-2,
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-    }
+/* CONTACT */
+.contact a {
+  color:var(--accent);
+  text-decoration:none;
+}
 
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-copy,
-    .hero-media {
-      min-height: 610px;
-    }
-
-    .hero-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(180deg, #fffefb, #fbf7ef);
-    }
-
-    .hero-media {
-      position: relative;
-      overflow: hidden;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      background: linear-gradient(180deg, #f4ecdf, #fff);
-      padding: 14px;
-    }
-
-    .hero-badge {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      border-radius: 18px;
-      padding: 16px 18px;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-subtitle {
-      font-size: 1.12rem;
-      color: var(--text);
-      max-width: 720px;
-    }
-
-    .typing-line {
-      min-height: 34px;
-      color: var(--accent);
-      font-weight: 700;
-      margin: 12px 0 16px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .2s ease, background .2s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-secondary {
-      background: #fff;
-      border-color: var(--line);
-      color: var(--accent);
-    }
-
-    .quick-grid,
-    .stats-grid,
-    .class-grid,
-    .tile-grid,
-    .gallery-grid,
-    .accomplishment-grid,
-    .accomplishment-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 18px; }
-    .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 22px; }
-    .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; }
-    .tile-grid,
-    .gallery-grid,
-    .accomplishment-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
-    .accomplishment-list { grid-template-columns: 1fr; margin-top: 22px; }
-
-    .mini-card,
-    .stat,
-    .class-card,
-    .tile,
-    .gallery-card,
-    .accomplishment-card,
-    .contact-item {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .mini-card,
-    .stat,
-    .class-card,
-    .tile,
-    .contact-item { padding: 18px; }
-
-    .mini-card strong { display: block; margin-bottom: 6px; }
-    .stat-number {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .class-card h3,
-    .tile h3,
-    .gallery-body h3,
-    .accomplishment-body h3 { margin-bottom: 8px; }
-
-    .class-card ul,
-    .tile ul,
-    .clean-list {
-      margin: 10px 0 0 18px;
-      color: var(--muted);
-    }
-
-    .detail-note {
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .image-frame,
-    .gallery-image,
-    .accomplishment-image {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: linear-gradient(180deg, #efe7d8, #fff);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .image-frame img,
-    .gallery-image img,
-    .accomplishment-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      padding: 10px;
-    }
-
-    .tile.video-tile video {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 16px;
-      background: #000;
-      margin-top: 12px;
-    }
-
-    .gallery-card,
-    .accomplishment-card,
-    .list-accomplishment {
-      overflow: hidden;
-      transition: transform .22s ease;
-    }
-
-    .gallery-card:hover,
-    .accomplishment-card:hover,
-    .list-accomplishment:hover { transform: translateY(-4px); }
-
-    .gallery-body,
-    .accomplishment-body { padding: 18px; }
-
-    .list-accomplishment {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      overflow: hidden;
-    }
-
-    .list-copy {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-    }
-
-    .list-kicker {
-      display: inline-block;
-      margin-bottom: 8px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .list-media {
-      background: linear-gradient(180deg, #efe7d8, #fff);
-      border-left: 1px solid var(--line);
-      min-height: 250px;
-    }
-
-    .list-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      padding: 12px;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .pill {
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
-
-    .contact-grid { margin-top: 22px; }
-    .contact-list { display: grid; gap: 14px; }
-    .contact-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-    }
-
-    label {
-      display: grid;
-      gap: 8px;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-      resize: vertical;
-    }
-
-    textarea { min-height: 150px; }
-    .footer {
-      padding: 18px 0 44px;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    @media (max-width: 1100px) {
-      .hero-grid,
-      .grid-2,
-      .contact-grid { grid-template-columns: 1fr; }
-      .hero-copy,
-      .hero-media { min-height: auto; }
-      .stats-grid,
-      .tile-grid,
-      .gallery-grid,
-      .accomplishment-grid,
-      .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .list-accomplishment { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 760px) {
-      :root { --nav-h: 118px; }
-      .site-nav { height: auto; padding: 10px 0; }
-      .nav-inner { align-items: flex-start; flex-direction: column; }
-      .nav-links { justify-content: flex-start; gap: 10px; }
-      .quick-grid,
-      .stats-grid,
-      .tile-grid,
-      .gallery-grid,
-      .accomplishment-grid,
-      .class-grid,
-      .accomplishment-list { grid-template-columns: 1fr; }
-      .list-accomplishment { grid-template-columns: 1fr; }
-      .card,
-      .hero-copy { padding: 22px; }
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <nav class="site-nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">
-        <span class="brand-mark">OK</span>
-        <span>Omer Kural</span>
-      </a>
-      <div class="nav-links">
-        <a href="#home" data-page="home">Home</a>
-        <a href="#about" data-page="about">About</a>
-        <a href="#academics" data-page="academics">Academics</a>
-        <a href="#accomplishments" data-page="accomplishments">Accomplishments</a>
-        <a href="#leadership" data-page="leadership">Leadership</a>
-        <a href="#projects" data-page="projects">Projects</a>
-        <a href="#gallery" data-page="gallery">Gallery</a>
-        <a href="#contact" data-page="contact">Contact</a>
-      </div>
+
+<!-- NAV -->
+<nav>
+  <div><strong>Omer Kural</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#academics">Academics</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Omer Kural</h1>
+  <p>
+    I build across engineering, biology, and computation.  
+    My work focuses on turning complex systems into something usable, whether that’s through hardware, code, or research.
+  </p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About</h2>
+  <p>
+    I am currently a student at Lighthouse Schools, where I am involved in advanced academic and research-focused programs.
+    My interests lie at the intersection of mechanical engineering, biochemistry, and neuroscience.
+  </p>
+
+  <p>
+    I have spent several years working with 3D CAD, 3D printing, and hardware systems, alongside gaining direct exposure to laboratory environments, microscopy, and computational analysis.
+  </p>
+
+  <p>
+    I currently serve as a Head RA, working closely with administration and managing student groups, and as a Teaching Assistant in Islamic Studies.
+  </p>
+</section>
+
+<!-- WORK / EXPERIENCE -->
+<section id="work">
+  <h2>Selected Experience</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerGivingaPresentationatTheLighthouseSchoolsinaSuit#1.jpg">
+      <h3>Lighthouse Biophysics Research</h3>
+      <p class="muted">
+        Multi-year research initiative involving microscopy, engineering design, and computational analysis.
+      </p>
     </div>
-  </nav>
 
-  <main class="page-shell">
-    <section class="page active" id="home" data-page="home">
-      <div class="container hero-grid">
-        <div class="card hero-copy">
-          <div>
-            <div class="eyebrow">Student researcher · Head RA · Teaching Assistant</div>
-            <h1>Interdisciplinary, hands-on, and built for responsibility.</h1>
-            <p class="hero-subtitle">
-              I am <strong>Omer Kural</strong>, a student developing at the intersection of <strong>engineering, biophysics, computation, leadership, and public communication</strong>.
-            </p>
-            <div class="typing-line" id="typing-text"></div>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact" data-page-link="contact">Contact</a>
-              <a class="btn btn-secondary" href="resume.pdf" download>Download Resume</a>
-              <a class="btn btn-secondary" href="https://www.linkedin.com/in/omer-kural-1a7a24391" target="_blank" rel="noreferrer">LinkedIn</a>
-            </div>
-          </div>
-          <div class="quick-grid">
-            <div class="mini-card">
-              <strong>Lighthouse Biophysics Research Fellowship</strong>
-              <p>Selective long-term program focused on biophysics, microscopy, engineering design, and computational analysis.</p>
-            </div>
-            <div class="mini-card">
-              <strong>Head RA</strong>
-              <p>Daily interaction with administration and weekly student progress meetings in a residential leadership role.</p>
-            </div>
-            <div class="mini-card">
-              <strong>Teaching Assistant</strong>
-              <p>TA for Foundations of Islamic Faith and Prophet’s Life and Personality.</p>
-            </div>
-            <div class="mini-card">
-              <strong>Long-term goals</strong>
-              <p>Planned double major in Mechanical Engineering and Biochemistry, with sustained interest in Neuroscience.</p>
-            </div>
-          </div>
-        </div>
-        <div class="hero-media">
-          <img src="OmerAtIowaCapitol(GoodProfileIntroductionPicture).jpg" alt="Omer Kural at the Iowa Capitol" />
-          <div class="hero-badge">
-            <strong>Current profile</strong>
-            <p>Research-minded, technically curious, leadership-tested, and building toward a serious scientific and engineering future.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg">
+      <h3>Technical Projects</h3>
+      <p class="muted">
+        CAD design, 3D printing systems, and independent engineering builds.
+      </p>
+    </div>
 
-    <section class="page" id="about" data-page="about">
-      <div class="container">
-        <div class="eyebrow">About</div>
-        <div class="grid-2">
-          <div class="card">
-            <h2>My backstory, organized clearly.</h2>
-            <p>
-              In <strong>8th grade</strong>, I attended <strong>Fountain Academy in Chicago</strong>, which was my first experience at a boarding school. That year gave me an early introduction to structured academic life away from home and helped develop discipline, adaptability, and independence.
-            </p>
-            <p>
-              In <strong>9th grade</strong>, I joined <strong>The Lighthouse Schools</strong> in Iowa during the school’s very first year. Being part of a school that had just opened meant that everything felt foundational. I was not simply joining an established environment; I was growing with a new institution.
-            </p>
-            <p>
-              Since then, my path has become increasingly defined by <strong>academic ambition, technical curiosity, responsibility in leadership roles, and a strong interest in serious long-term work</strong>. I am especially motivated by opportunities that combine science, engineering, communication, and mentorship.
-            </p>
-            <p>
-              My academic direction is toward a planned <strong>double major in Mechanical Engineering and Biochemistry</strong>, with strong interest in <strong>Neuroscience</strong>. What appeals to me most is the chance to work across fields rather than remain limited to only one way of thinking.
-            </p>
-          </div>
-          <div class="card">
-            <h3>What stands out in my profile</h3>
-            <div class="pill-list">
-              <span class="pill">Boarding school experience</span>
-              <span class="pill">Founding-year Lighthouse student</span>
-              <span class="pill">Head RA</span>
-              <span class="pill">Teaching Assistant</span>
-              <span class="pill">Research fellowship</span>
-              <span class="pill">Public speaking</span>
-              <span class="pill">3D printing and CAD</span>
-              <span class="pill">Computation</span>
-            </div>
-            <div class="detail-note">
-              This site is structured to present not just scattered facts, but a coherent profile: someone who has already taken on real responsibility, is academically ambitious, and is intentionally moving toward research-heavy and engineering-heavy work.
-            </div>
-            <div class="image-frame" style="margin-top:16px; border-radius:18px; border:1px solid var(--line);">
-              <img src="Omer,InaSuit,inhishome.jpg" alt="Omer in a suit at home" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OmerWithHisRAGroup#2.jpg">
+      <h3>Leadership (Head RA)</h3>
+      <p class="muted">
+        Managing student groups, coordinating with administration, and mentoring peers.
+      </p>
+    </div>
 
-    <section class="page" id="academics" data-page="academics">
-      <div class="container">
-        <div class="eyebrow">Academics</div>
-        <div class="card">
-          <h2>Academic journey by grade</h2>
-          <p>
-            This section is intentionally organized by year so it stays detailed without becoming overwhelming. It shows what I took, what I am taking now, and what I plan to take next.
-          </p>
-        </div>
-        <div class="class-grid">
-          <div class="class-card">
-            <h3>8th Grade · Fountain Academy</h3>
-            <ul>
-              <li>Algebra 1</li>
-              <li>8th Grade Science</li>
-              <li>8th Grade World History</li>
-              <li>Biology / normal science coursework</li>
-              <li>Religious classes</li>
-            </ul>
-            <p class="detail-note">My first boarding-school year in Chicago.</p>
-          </div>
-          <div class="class-card">
-            <h3>9th Grade · Lighthouse Schools</h3>
-            <ul>
-              <li>Biology</li>
-              <li>Geometry</li>
-              <li>English 9</li>
-              <li>Global History Since 1500 (ASU dual credit)</li>
-              <li>Introduction to Health and Wellness (ASU dual credit)</li>
-              <li>Online Learning Success for Universal Learners (ASU dual enrollment)</li>
-              <li>Aqaid</li>
-              <li>Arabic 1</li>
-              <li>Islamic Studies</li>
-              <li>Quran Memorization</li>
-            </ul>
-            <p class="detail-note">My freshman year, during the opening year of Lighthouse Schools.</p>
-          </div>
-          <div class="class-card">
-            <h3>10th Grade · Current</h3>
-            <ul>
-              <li>Algebra 2</li>
-              <li>English 10</li>
-              <li>AP Psychology</li>
-              <li>AP Computer Science A</li>
-              <li>AP Computer Science Principles</li>
-              <li>AP Environmental Science</li>
-              <li>College and Career Readiness</li>
-              <li>Public Speaking</li>
-              <li>Basics of Quranic Literacy</li>
-              <li>Arabic 2</li>
-              <li>Foundations of Islamic Faith</li>
-              <li>Prophet’s Life and Personality</li>
-            </ul>
-            <p class="detail-note">My current year combines advanced science, computing, communication, and religious studies.</p>
-          </div>
-          <div class="class-card">
-            <h3>11th Grade · Planned</h3>
-            <ul>
-              <li>AP Biology</li>
-              <li>AP Chemistry</li>
-              <li>AP Physics</li>
-              <li>AP Calculus</li>
-              <li>AP English Language and Composition</li>
-              <li>Social Emotional Learning 1</li>
-            </ul>
-            <p class="detail-note">Planned to make my course load much more directly aligned with engineering and science.</p>
-          </div>
-          <div class="class-card">
-            <h3>12th Grade · Planned</h3>
-            <ul>
-              <li>To be decided</li>
-            </ul>
-            <p class="detail-note">Senior-year planning is not finalized yet.</p>
-          </div>
-          <div class="class-card">
-            <h3>Academic direction</h3>
-            <ul>
-              <li>Mechanical Engineering</li>
-              <li>Biochemistry</li>
-              <li>Neuroscience interest</li>
-              <li>Research and technical work as long-term differentiators</li>
-            </ul>
-            <p class="detail-note">The progression is intentionally becoming more rigorous and more focused.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+  </div>
+</section>
 
-    <section class="page" id="accomplishments" data-page="accomplishments">
-      <div class="container">
-        <div class="eyebrow">Accomplishments</div>
-        <div class="card">
-          <h2>Selected accomplishments</h2>
-          <p>
-            This section is intentionally structured as a clean, left-aligned list. Each accomplishment has a short label, a supporting image, and a button that opens a dedicated detail page with more explanation.
-          </p>
-        </div>
+<!-- ACADEMICS -->
+<section id="academics">
+  <h2>Academics</h2>
 
-        <div class="accomplishment-list">
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Leadership</div>
-              <h3>Head RA</h3>
-              <p>One of the two Head RAs on the dormitory side, with recurring leadership responsibility and direct coordination with school administration.</p>
-              <a class="btn btn-primary" href="#accomplishment-head-ra" data-page-link="accomplishment-head-ra">Read more</a>
-            </div>
-            <div class="list-media"><img src="OmerWithHisRAGroupSelfie.jpg" alt="Omer with his RA group selfie" /></div>
-          </article>
+  <div class="grid">
+    <div class="card">
+      <h3>Current</h3>
+      <p class="muted">
+        AP Psychology, AP CSA, AP CSP, AP Environmental Science, Algebra 2, English 10
+      </p>
+    </div>
 
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Teaching</div>
-              <h3>Teaching Assistant</h3>
-              <p>Selected as a TA for Foundations of Islamic Faith and Prophet’s Life and Personality.</p>
-              <a class="btn btn-primary" href="#accomplishment-ta" data-page-link="accomplishment-ta">Read more</a>
-            </div>
-            <div class="list-media"><img src="APictureShowingCurrentTeacherAssistants(TA%27s)atTheLighthouseSchools,thisistheschool%27sofficialpost.jpg" alt="Official post showing current teacher assistants" /></div>
-          </article>
+    <div class="card">
+      <h3>Next Year</h3>
+      <p class="muted">
+        AP Biology, AP Chemistry, AP Physics, AP Calculus
+      </p>
+    </div>
 
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Research</div>
-              <h3>Lighthouse Biophysics Research Fellowship</h3>
-              <p>Selective long-term fellowship centered on biophysics, microscopy, engineering design, and computational analysis.</p>
-              <a class="btn btn-primary" href="#accomplishment-fellowship" data-page-link="accomplishment-fellowship">Read more</a>
-            </div>
-            <div class="list-media"><img src="Omer,StandingNexttoDr.AkifTheLighthouseSchools%27FounderBothinAprofessionalsuitgivingapresentation.jpg" alt="Omer standing next to Dr. Akif" /></div>
-          </article>
+    <div class="card">
+      <h3>Focus</h3>
+      <p class="muted">
+        Mechanical Engineering, Biochemistry, Neuroscience
+      </p>
+    </div>
+  </div>
+</section>
 
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Recognition</div>
-              <h3>Student of the Month</h3>
-              <p>A visible recognition tied to consistency, conduct, and contribution within school life.</p>
-              <a class="btn btn-primary" href="#accomplishment-student-month" data-page-link="accomplishment-student-month">Read more</a>
-            </div>
-            <div class="list-media"><img src="OmerStudentofTheMonthNovember.jpg" alt="Omer Student of the Month" /></div>
-          </article>
-        </div>
-      </div>
-    </section>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:omerkural@tlhschools.org">omerkural@tlhschools.org</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/omer-kural-1a7a24391/" target="_blank">Profile</a></p>
+</section>
 
-    <section class="page" id="accomplishment-head-ra" data-page="accomplishment-head-ra">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Accomplishment detail</div>
-          <h2>Head RA</h2>
-          <p>
-            At the end of 9th grade, I and two other students were selected to become RAs for the following year. I currently serve as one of the two <strong>Head RAs</strong> on the dormitory side.
-          </p>
-          <p>
-            This role includes daily meetings with administration, dorm directors, residential life coordinators, and principals about policy changes, implementation, and student feedback. I also lead my own RA group and hold weekly progress meetings focused on grades, wellbeing, and overall student development.
-          </p>
-          <p>
-            What makes this accomplishment meaningful is that it reflects trust, consistency, and the ability to work within real structures of responsibility. It is not just a title; it involves recurring accountability.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
-          </div>
-        </div>
-        <div class="gallery-grid">
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerWithHisRAGroup%232.jpg" alt="Omer with his RA group" /></div>
-            <div class="gallery-body"><h3>RA group</h3><p>A direct visual tied to residential leadership.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerWithHisRAGroupatThousandTales,RestaurantinChicagoEatingDinner.jpg" alt="Omer with his RA group at dinner" /></div>
-            <div class="gallery-body"><h3>Group dinner</h3><p>Shows the community-building side of mentorship and leadership.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="accomplishment-ta" data-page="accomplishment-ta">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Accomplishment detail</div>
-          <h2>Teaching Assistant</h2>
-          <p>
-            This year I was chosen as one of the school’s Teaching Assistants. I serve as the TA for <strong>Foundations of Islamic Faith</strong> and <strong>Prophet’s Life and Personality</strong>.
-          </p>
-          <p>
-            That role reflects more than just academic strength. It also suggests professionalism, reliability, and the ability to support a classroom environment in a structured way.
-          </p>
-          <p>
-            It fits well with the broader profile presented on this site: I am not only interested in learning for myself, but also in being useful in environments where responsibility matters.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="accomplishment-fellowship" data-page="accomplishment-fellowship">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Accomplishment detail</div>
-          <h2>Lighthouse Biophysics Research Fellowship</h2>
-          <p>
-            The Lighthouse Biophysics Research Fellowship is a selective extracurricular research program dedicated to advanced study in <strong>biophysics, quantitative biology, microscopy, engineering design, and computational analysis</strong>.
-          </p>
-          <p>
-            The fellowship is designed for students prepared to think critically, work with precision, and contribute to projects that extend beyond a single semester or school year. It is intended as a long-term commitment through graduation, with strong emphasis on maturity, integrity, academic discipline, and laboratory standards.
-          </p>
-          <p>
-            This accomplishment belongs with the other major achievements on the site because it shows alignment between my interests and a serious, selective, research-oriented program.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="accomplishment-student-month" data-page="accomplishment-student-month">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Accomplishment detail</div>
-          <h2>Student of the Month</h2>
-          <p>
-            Being recognized as <strong>Student of the Month</strong> matters because it reflects a broader pattern rather than a single isolated moment. Recognition like this usually points to consistency, visible contribution, and a dependable presence within school life.
-          </p>
-          <p>
-            On this site, it works best as supporting evidence that my profile is not just self-described. There are also visible signs that others have noticed and trusted my contribution.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#accomplishments" data-page-link="accomplishments">Back to accomplishments</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="leadership" data-page="leadership">
-      <div class="container">
-        <div class="eyebrow">Leadership</div>
-        <div class="grid-2">
-          <div class="card">
-            <h2>Head RA responsibilities</h2>
-            <p>
-              At the end of 9th grade, I and two other students were chosen to serve as RAs for the following year. I now serve as one of the <strong>two Head RAs</strong> on the school’s dormitory side.
-            </p>
-            <p>
-              That role includes <strong>daily meetings with administration, dorm directors, residential life coordinators, and principals</strong> concerning policy changes, implementation, and student feedback.
-            </p>
-            <p>
-              Each RA has a group, and I also have my own group. I hold <strong>weekly meetings</strong> with them to check on grades, wellbeing, and overall progress. At times, I also find sponsors for the group and take them out to dinner.
-            </p>
-          </div>
-          <div class="card">
-            <h3>What this shows</h3>
-            <ul class="clean-list">
-              <li>Ability to operate within formal leadership structures</li>
-              <li>Regular responsibility for student wellbeing and accountability</li>
-              <li>Comfort speaking with both peers and administration</li>
-              <li>Leadership that includes follow-up, not just title</li>
-            </ul>
-            <div class="detail-note">
-              These details matter because they show that leadership in my case is practical, recurring, and trusted.
-            </div>
-          </div>
-        </div>
-        <div class="tile-grid">
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmerWithHisRAGroup%232.jpg" alt="Omer with his RA group" />
-            </div>
-            <h3>RA group</h3>
-            <p>One of the strongest images for showing leadership in context.</p>
-          </article>
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="OmerWithHisRAGroupatThousandTales,RestaurantinChicagoEatingDinner.jpg" alt="Omer with his RA group at dinner" />
-            </div>
-            <h3>Community-building</h3>
-            <p>Mentorship includes creating a healthy group culture, not just enforcing rules.</p>
-          </article>
-          <article class="tile">
-            <div class="image-frame" style="border-radius:16px; border:1px solid var(--line); margin-bottom:12px;">
-              <img src="FirstYearofLighthouseStudentsCelebratingOmer%27sBirthday.jpg" alt="Lighthouse students celebrating Omer's birthday" />
-            </div>
-            <h3>Founding-year community</h3>
-            <p>Represents the relationships and social trust built during the early Lighthouse period.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="projects" data-page="projects">
-      <div class="container">
-        <div class="eyebrow">Projects</div>
-        <div class="card">
-          <h2>Projects and project-related work</h2>
-          <p>
-            Like the accomplishments section, this page is now structured as a clean list. Each project has a short summary and a detail page for a fuller explanation.
-          </p>
-        </div>
-
-        <div class="accomplishment-list">
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Presentation</div>
-              <h3>OSCAR Project</h3>
-              <p>A public-facing business project presentation completed with partners.</p>
-              <a class="btn btn-primary" href="#project-oscar" data-page-link="project-oscar">Read more</a>
-            </div>
-            <div class="list-media"><img src="OmerPresentingaBusinessProjectNamedOSCARwithhispartners.jpg" alt="Omer presenting OSCAR" /></div>
-          </article>
-
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Communication</div>
-              <h3>Lighthouse Presentation</h3>
-              <p>Formal presentation experience that supports the professional and public-speaking side of my portfolio.</p>
-              <a class="btn btn-primary" href="#project-lighthouse-presentation" data-page-link="project-lighthouse-presentation">Read more</a>
-            </div>
-            <div class="list-media"><img src="OmerGivingaPresentationatTheLighthouseSchoolsinaSuit%231.jpg" alt="Omer giving a presentation" /></div>
-          </article>
-
-          <article class="list-accomplishment">
-            <div class="list-copy">
-              <div class="list-kicker">Technical direction</div>
-              <h3>3D Printing and CAD Work</h3>
-              <p>Hands-on technical work in modeling, printing, troubleshooting, and building.</p>
-              <a class="btn btn-primary" href="#project-cad-printing" data-page-link="project-cad-printing">Read more</a>
-            </div>
-            <div class="list-media"><img src="OmerWithHisFriendAppearingtobeCollectingSomeElectronicCircuitRelatedThingsintoAcardboardbox.heic" alt="Omer with a friend handling electronics-related items" /></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="project-oscar" data-page="project-oscar">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Project detail</div>
-          <h2>OSCAR Project</h2>
-          <p>
-            The OSCAR project is important on this site because it shows more than classroom participation. It shows collaborative work, preparation, presentation, and the ability to communicate an idea clearly in a more formal setting.
-          </p>
-          <p>
-            It supports the larger theme of the portfolio: I work best when I can combine structure, communication, and initiative.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="project-lighthouse-presentation" data-page="project-lighthouse-presentation">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Project detail</div>
-          <h2>Lighthouse Presentation</h2>
-          <p>
-            My Lighthouse presentation images and video are included because they represent the public-facing side of my profile. They show comfort with formal communication, visual professionalism, and confidence presenting in front of others.
-          </p>
-          <p>
-            This complements the more technical and leadership-oriented parts of the portfolio by showing that I can also explain and represent ideas clearly.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="project-cad-printing" data-page="project-cad-printing">
-      <div class="container">
-        <div class="card">
-          <div class="eyebrow">Project detail</div>
-          <h2>3D Printing and CAD Work</h2>
-          <p>
-            A major part of my technical identity comes from years of hands-on work with 3D printing and CAD. This includes modeling, machine maintenance, troubleshooting, material choice, and practical problem-solving.
-          </p>
-          <p>
-            It belongs in the projects area because it is an actual body of recurring technical work rather than a vague interest. It also connects directly to my long-term interest in engineering and research-heavy environments.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-secondary" href="#projects" data-page-link="projects">Back to projects</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="gallery" data-page="gallery">
-      <div class="container">
-        <div class="eyebrow">Gallery</div>
-        <div class="card">
-          <h2>Selected images</h2>
-          <p>
-            I chose images that support the overall professional story: presentations, school milestones, group leadership, and clean personal photos. I left out images that would make the site feel too random or too crowded.
-          </p>
-        </div>
-        <div class="gallery-grid">
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerAtTheLighthouseSchools.jpg" alt="Omer at The Lighthouse Schools" /></div>
-            <div class="gallery-body"><h3>Lighthouse</h3><p>A clean contextual image connected to the school environment.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerAtFountainAcademy%232.jpg" alt="Omer at Fountain Academy" /></div>
-            <div class="gallery-body"><h3>Fountain Academy</h3><p>A direct reference to the earliest boarding-school chapter.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmeratFountainAcademy%233.jpg" alt="Omer at Fountain Academy" /></div>
-            <div class="gallery-body"><h3>Earlier academic chapter</h3><p>Helps connect the full story from 8th grade onward.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerAtJobFaironBus%231.jpg" alt="Omer on the bus at a job fair" /></div>
-            <div class="gallery-body"><h3>Job fair trip</h3><p>Supports the career-oriented side of the portfolio.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerGivingHisFirstFridayPrayer(Jumah)Sermon.jpg" alt="Omer giving his first Friday prayer sermon" /></div>
-            <div class="gallery-body"><h3>Public speaking</h3><p>Another image that shows confidence in front of people.</p></div>
-          </article>
-          <article class="gallery-card">
-            <div class="gallery-image"><img src="OmerYoungInAirportInFrontofPlanes.jpg" alt="Omer young in an airport in front of planes" /></div>
-            <div class="gallery-body"><h3>Earlier memory</h3><p>A more personal archival image that adds depth without weakening professionalism.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" id="contact" data-page="contact">
-      <div class="container">
-        <div class="eyebrow">Contact</div>
-        <div class="contact-grid">
-          <div class="card">
-            <h2>Get in touch</h2>
-            <div class="contact-list">
-              <div class="contact-item">
-                <span>Email</span>
-                <strong><a href="mailto:omerkural@tlhschools.org">omerkural@tlhschools.org</a></strong>
-              </div>
-              <div class="contact-item">
-                <span>LinkedIn</span>
-                <strong><a href="https://www.linkedin.com/in/omer-kural-1a7a24391" target="_blank" rel="noreferrer">linkedin.com/in/omer-kural-1a7a24391</a></strong>
-              </div>
-              <div class="contact-item">
-                <span>Best use of this site</span>
-                <strong>Academic, research, mentorship, leadership, and portfolio inquiries</strong>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <form action="https://formspree.io/f/yourID" method="POST">
-              <label>
-                Name
-                <input type="text" name="name" placeholder="Your name" required>
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" placeholder="Your email" required>
-              </label>
-              <label>
-                Message
-                <textarea name="message" placeholder="Write your message here" required></textarea>
-              </label>
-              <button class="btn btn-primary" type="submit">Send message</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">© 2026 Omer Kural. Portfolio site.</div>
-  </footer>
-
-  <script>
-    const pages = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('.nav-links a[data-page]');
-    const quickLinks = document.querySelectorAll('[data-page-link]');
-
-    function showPage(pageId) {
-      pages.forEach(page => page.classList.toggle('active', page.dataset.page === pageId));
-      navLinks.forEach(link => link.classList.toggle('active', link.dataset.page === pageId));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function pageFromHash() {
-      const hash = window.location.hash.replace('#', '');
-      const valid = [...pages].some(p => p.dataset.page === hash);
-      return valid ? hash : 'home';
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = link.dataset.page;
-        history.replaceState(null, '', '#' + target);
-        showPage(target);
-      });
-    });
-
-    quickLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = link.dataset.pageLink;
-        history.replaceState(null, '', '#' + target);
-        showPage(target);
-      });
-    });
-
-    window.addEventListener('hashchange', () => showPage(pageFromHash()));
-    showPage(pageFromHash());
-
-    const phrases = [
-      'Mechanical Engineering · Biochemistry · Neuroscience',
-      'Head RA · Teaching Assistant · student presenter',
-      'Research fellowship · technical curiosity · long-term growth',
-      'Boarding school discipline · leadership · communication'
-    ];
-
-    const typingEl = document.getElementById('typing-text');
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeLoop() {
-      const current = phrases[phraseIndex];
-      typingEl.textContent = current.slice(0, charIndex);
-      if (!deleting && charIndex < current.length) {
-        charIndex++;
-        setTimeout(typeLoop, 42);
-      } else if (!deleting && charIndex === current.length) {
-        deleting = true;
-        setTimeout(typeLoop, 1400);
-      } else if (deleting && charIndex > 0) {
-        charIndex--;
-        setTimeout(typeLoop, 24);
-      } else {
-        deleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(typeLoop, 220);
-      }
-    }
-    typeLoop();
-  </script>
 </body>
 </html>
